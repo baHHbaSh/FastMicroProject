@@ -15,23 +15,27 @@ let MoneyOnClick = 1;
 
 document.querySelector("#button").addEventListener("click", ()=>{
 	Score = +Score + (+MoneyOnClick * Coef());
-	//SaveData(Score, MoneyOnClick)
+	SaveData(Score, MoneyOnClick)
 	UpdateScore()
 	console.log(Score, MoneyOnClick)
 })
 
 function UpdateScore(){
 	document.querySelector("#score").innerHTML = Score;
+	document.querySelector("#level").innerHTML = MoneyOnClick;
 }
 
 document.querySelector("#ButtonUpgrader").addEventListener("click",()=>{
-	MoneyOnClick = +MoneyOnClick + 1;
-	//SaveData(Score, MoneyOnClick)
+	if (Score >= MoneyOnClick){
+		Score -= MoneyOnClick;
+		MoneyOnClick = +MoneyOnClick + 1;
+	}
+	SaveData(Score, MoneyOnClick)
 	UpdateScore()
 })
 
-//Score = GetData()[0]
-//MoneyOnClick = GetData()[1]
+Score = GetData()[0]
+MoneyOnClick = GetData()[1]
 if (Score == null || Score == NaN || Score == undefined){
 	Score = 0
 }
@@ -72,7 +76,7 @@ function Render(){
 	ctx.fillStyle = "green";
 	ctx.fillRect(200, 0, canvas.width-400, canvas.height);
 
-	State -=3;
+	State -=5;
 
 	ctx.fillStyle = "white";
 	ctx.fillRect(State - 5, 20, 10, 10);
