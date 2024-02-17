@@ -1,9 +1,9 @@
 function SaveData(points, upgrade) {
 	window.localStorage.setItem("points", points);
-	window.localStorage.serItem("upgrade", upgrade);
+	window.localStorage.setItem("upgrade", upgrade);
 }
 function GetData() {
-	return [window.localStorage.getItem("points"), window.localStorage.getItem("upgrade")]
+	return [window.localStorage.getItem("points"), +window.localStorage.getItem("upgrade")]
 }
 function ClearData(){
 	window.localStorage.clear();
